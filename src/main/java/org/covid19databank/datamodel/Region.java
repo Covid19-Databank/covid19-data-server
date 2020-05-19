@@ -11,6 +11,7 @@ public class Region {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "region")
@@ -18,6 +19,15 @@ public class Region {
 
     @ManyToMany(mappedBy = "regions")
     private Set<Country> countries;
+
+
+    public Region() {
+        // Default Constructor
+    }
+
+    public Region(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

@@ -1,8 +1,6 @@
 package org.covid19databank.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,15 +8,6 @@ import java.util.Set;
 
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "ISO",
-        "Name",
-        "Nice Name",
-        "ISO3",
-        "Num Code",
-        "Phone Code"
-})
-@Table(name = "country")
 public class Country {
 
     @Id
@@ -26,8 +15,13 @@ public class Country {
     private Integer id;
 
     private String iso;
+
+    @Column(unique = true)
     private String name;
+
+    @Column(unique = true)
     private String niceName;
+
     private String iso3;
     private String numCode;
     private String phoneCode;
@@ -72,62 +66,50 @@ public class Country {
         this.id = id;
     }
 
-    @JsonProperty("ISO")
     public String getIso() {
         return iso;
     }
 
-    @JsonProperty("ISO")
     public void setIso(String iso) {
         this.iso = iso;
     }
 
-    @JsonProperty("Name")
     public String getName() {
         return name;
     }
 
-    @JsonProperty("Name")
     public void setName(String name) {
         this.name = name;
     }
 
-    @JsonProperty("Nice Name")
     public String getNiceName() {
         return niceName;
     }
 
-    @JsonProperty("Nice Name")
     public void setNiceName(String niceName) {
         this.niceName = niceName;
     }
 
-    @JsonProperty("ISO3")
     public String getIso3() {
         return iso3;
     }
 
-    @JsonProperty("ISO3")
     public void setIso3(String iso3) {
         this.iso3 = iso3;
     }
 
-    @JsonProperty("numCode")
     public String getNumCode() {
         return numCode;
     }
 
-    @JsonProperty("Num Code")
     public void setNumCode(String numCode) {
         this.numCode = numCode;
     }
 
-    @JsonProperty("Phone Code")
     public String getPhoneCode() {
         return phoneCode;
     }
 
-    @JsonProperty("Phone Code")
     public void setPhoneCode(String phoneCode) {
         this.phoneCode = phoneCode;
     }
