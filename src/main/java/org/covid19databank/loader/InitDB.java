@@ -25,7 +25,7 @@ public class InitDB implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (iniitializeDatabase) {
             initDataBaseService.loadRegions();
-            initDataBaseService.loadCountries();
+           // initDataBaseService.loadCountries();
         }
 
         dataLoaderService.getCasesData();

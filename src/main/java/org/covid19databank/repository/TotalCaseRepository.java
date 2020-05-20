@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TotalCaseRepository extends JpaRepository<TotalCase, Integer> {
 
+    boolean existsByLatestUpdate(String latestUpdateTime);
 }

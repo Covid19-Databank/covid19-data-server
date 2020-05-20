@@ -14,10 +14,11 @@ public class ReportedCase {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    private String state;
     private Integer confirmed;
     private Integer deaths;
     private Integer recovered;
-    private Date lastUpdated;
+    private String lastUpdated;
     private Integer dailyConfirmed;
     private Integer dailyDeaths;
     private Integer critical;
@@ -31,67 +32,95 @@ public class ReportedCase {
         this.id = id;
     }
 
-    public Integer getConfirmed() {
-        return confirmed;
+    public String getState() {
+        return state;
     }
 
-    public void setConfirmed(Integer confirmed) {
-        this.confirmed = confirmed;
+    public Integer getConfirmed() {
+        return confirmed;
     }
 
     public Integer getDeaths() {
         return deaths;
     }
 
-    public void setDeaths(Integer deaths) {
-        this.deaths = deaths;
-    }
-
     public Integer getRecovered() {
         return recovered;
     }
 
-    public void setRecovered(Integer recovered) {
-        this.recovered = recovered;
-    }
-
-    public Date getLastUpdated() {
+    public String getLastUpdated() {
         return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 
     public Integer getDailyConfirmed() {
         return dailyConfirmed;
     }
 
-    public void setDailyConfirmed(Integer dailyConfirmed) {
-        this.dailyConfirmed = dailyConfirmed;
-    }
-
     public Integer getDailyDeaths() {
         return dailyDeaths;
-    }
-
-    public void setDailyDeaths(Integer dailyDeaths) {
-        this.dailyDeaths = dailyDeaths;
     }
 
     public Integer getCritical() {
         return critical;
     }
 
-    public void setCritical(Integer critical) {
-        this.critical = critical;
-    }
-
     public Integer getTests() {
         return tests;
     }
 
-    public void setTests(Integer tests) {
-        this.tests = tests;
+
+    public ReportedCase setCountry(Country country) {
+        this.country = country;
+        return this;
     }
+
+    public ReportedCase setState(String state) {
+        this.state = state;
+        return this;
+    }
+
+    public ReportedCase setConfirmed(Integer confirmed) {
+        this.confirmed = confirmed;
+        return this;
+    }
+
+    public ReportedCase setDeaths(Integer deaths) {
+        this.deaths = deaths;
+        return this;
+    }
+
+    public ReportedCase setRecovered(Integer recovered) {
+        this.recovered = recovered;
+        return this;
+    }
+
+    public ReportedCase setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
+        return this;
+    }
+
+    public ReportedCase setDailyConfirmed(Integer dailyConfirmed) {
+        this.dailyConfirmed = dailyConfirmed;
+        return this;
+    }
+
+    public ReportedCase setDailyDeaths(Integer dailyDeaths) {
+        this.dailyDeaths = dailyDeaths;
+        return this;
+    }
+
+    public ReportedCase setCritical(Integer critical) {
+        this.critical = critical;
+        return this;
+    }
+
+    public ReportedCase setTests(Integer tests) {
+        this.tests = tests;
+        return this;
+    }
+
+    public ReportedCase build() {
+        return this;
+    }
+
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,23 +34,22 @@ public class InitDataBaseService {
     }
 
     public void loadRegions(){
-        Arrays.asList(RegionData.values()).forEach(regionData -> {
-            try {
-                regionRepository.save(new Region(regionData.get()));
-            }catch (Exception e){
-                log.warn("Region Data {} is existing already", regionData);
-            }
-        });
+        List<Region> regions = new ArrayList<>();
+        Arrays.asList(RegionData.values()).forEach(regionData -> regions.add(new Region(regionData.get())));
+        if (regionRepository.count() == 0){
+            regionRepository.saveAll(regions);
+        }
     }
 
     public void loadCountries() {
         JsonNode jsonNode = readJsonLocal(Location.COUNTRIES_URL.get());
         List<Country> countries = mapper.convertValue(jsonNode.get("data"), new TypeReference<List<Country>>(){});
-        countryRepository.saveAll(countries);
+        if (countryRepository.count() == 0){
+            countryRepository.saveAll(countries);
+        }
     }
 
     private JsonNode readJsonLocal(String jsonFileLink) {
-
         JsonNode jsonNode = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(jsonFileLink));
