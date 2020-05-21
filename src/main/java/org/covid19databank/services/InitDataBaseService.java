@@ -8,7 +8,7 @@ import org.covid19databank.datamodel.Region;
 import org.covid19databank.repository.CountryRepository;
 import org.covid19databank.repository.RegionRepository;
 import org.covid19databank.services.constant.Location;
-import org.covid19databank.services.constant.RegionData;
+import org.covid19databank.services.constant.Regions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class InitDataBaseService {
 
     public void loadRegions(){
         List<Region> regions = new ArrayList<>();
-        Arrays.asList(RegionData.values()).forEach(regionData -> regions.add(new Region(regionData.get())));
+        Arrays.asList(Regions.values()).forEach(regionData -> regions.add(new Region(regionData.get())));
         if (regionRepository.count() == 0){
             regionRepository.saveAll(regions);
         }

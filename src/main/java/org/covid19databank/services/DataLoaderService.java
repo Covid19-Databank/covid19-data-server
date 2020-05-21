@@ -1,7 +1,6 @@
 package org.covid19databank.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.covid19databank.datamodel.Country;
@@ -9,12 +8,13 @@ import org.covid19databank.datamodel.Region;
 import org.covid19databank.datamodel.ReportedCase;
 import org.covid19databank.datamodel.TotalCase;
 import org.covid19databank.payload.Report;
+import org.covid19databank.payload.cov19cc.RegionData;
 import org.covid19databank.repository.CountryRepository;
 import org.covid19databank.repository.RegionRepository;
 import org.covid19databank.repository.ReportedCaseRepository;
 import org.covid19databank.repository.TotalCaseRepository;
 import org.covid19databank.services.constant.Location;
-import org.covid19databank.services.constant.RegionData;
+import org.covid19databank.services.constant.Regions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -52,11 +52,12 @@ public class DataLoaderService {
         assert data != null;
         JsonNode dData = data.get("regions");
         String time = data.get("last_updated").asText();
-        JsonNode worldData = dData.get(RegionData.WORLD.get());
 
-        List<Report> reports = mapper.convertValue(worldData.get("list"), new TypeReference<List<Report>>(){});
-        TotalCase worldTotal = mapper.convertValue(worldData.get("totals"), TotalCase.class);
-        Region region = regionRepository.findByName(RegionData.WORLD.get());
+        RegionData worldData = mapper.convertValue(dData.get(Regions.WORLD.get()), new TypeReference<RegionData>(){});
+
+        List<Report> reports = worldData.getList();
+        TotalCase worldTotal = worldData.getTotals();
+        Region region = regionRepository.findByName(Regions.WORLD.get());
 
         boolean isLoaded = this.loadTotalCases(worldTotal, region, time);
         if (isLoaded){

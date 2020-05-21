@@ -1,6 +1,6 @@
 package org.covid19databank.services.constant;
 
-public enum RegionData {
+public enum Regions {
 
     WORLD("world"),
     UNITEDSTATE("unitedstates"),
@@ -21,7 +21,7 @@ public enum RegionData {
 
     private String value;
 
-    private RegionData(String val) {
+    private Regions(String val) {
         value = val;
     }
 
