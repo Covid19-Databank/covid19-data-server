@@ -53,28 +53,39 @@ public class DataLoaderService {
         JsonNode dData = data.get("regions");
         String time = data.get("last_updated").asText();
 
-        RegionData worldData = mapper.convertValue(dData.get(Regions.WORLD.get()), new TypeReference<RegionData>(){});
+        Arrays.asList(Regions.values()).forEach(regionData -> {
+            String regionString = regionData.get();
 
-        List<Report> reports = worldData.getList();
-        TotalCase worldTotal = worldData.getTotals();
-        Region region = regionRepository.findByName(Regions.WORLD.get());
+            try {
+                RegionData worldData = mapper.convertValue(dData.get(regionString), new TypeReference<RegionData>(){});
+                List<Report> reports = worldData.getList();
+                TotalCase worldTotal = worldData.getTotals();
+                Region region = regionRepository.findByName(regionString);
 
-        boolean isLoaded = this.loadTotalCases(worldTotal, region, time);
-        if (isLoaded){
-            this.loadCountryData(reports, region);
-            this.loadCasesData(reports);
-        }
+                log.info("*** Region {} data loading commenced ***", regionString);
+                boolean isLoaded = this.loadTotalCases(worldTotal, region, time);
+                if (isLoaded){
+                    this.loadCountryData(reports, region);
+                    this.loadCasesData(reports);
+                }
+            }catch (Exception e){
+                log.error("Failed: Region {} data could not be loaded", regionString);
+            }
+
+        });
+
     }
 
     private boolean loadTotalCases(TotalCase worldTotal, Region region, String time){
         boolean loaded = false;
         worldTotal.setRegion(region);
         worldTotal.setLatestUpdate(time);
-        if (!totalCaseRepository.existsByLatestUpdate(worldTotal.getLatestUpdate())){
+
+        if (!totalCaseRepository.existsByLatestUpdateAndRegion(worldTotal.getLatestUpdate(), region)){
             totalCaseRepository.save(worldTotal);
             loaded = true;
         }else {
-            log.info("The Data was not saved, the feed is not updated yet");
+            log.info("Data was not saved, the feed is not updated yet");
         }
         return loaded;
     }
@@ -92,10 +103,8 @@ public class DataLoaderService {
                     .setPhoneCode("")
                     .setRegions(regions)
                     .build();
-            try {
+            if (!countryRepository.findByNiceName(report.getCountry()).isPresent()){
                 countryRepository.save(country);
-            }catch (Exception e){
-                log.warn(e.getMessage());
             }
         });
     }

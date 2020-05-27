@@ -1,12 +1,10 @@
 package org.covid19databank.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "total_case", uniqueConstraints = {@UniqueConstraint(columnNames = {"region_id", "latestUpdate"})})
 public class TotalCase {
 
     @Id
@@ -26,7 +24,6 @@ public class TotalCase {
     private Integer critical;
     private Integer tests;
 
-    @Column(unique = true)
     private String latestUpdate;
 
     public Integer getId() {
@@ -75,7 +72,6 @@ public class TotalCase {
     public Region getRegion() {
         return region;
     }
-
 
 
     public void setLatestUpdate(String latestUpdate) {
