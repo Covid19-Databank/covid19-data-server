@@ -3,10 +3,7 @@ package org.covid19databank.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.covid19databank.datamodel.Country;
-import org.covid19databank.datamodel.Region;
-import org.covid19databank.datamodel.ReportedCase;
-import org.covid19databank.datamodel.TotalCase;
+import org.covid19databank.datamodel.*;
 import org.covid19databank.payload.Report;
 import org.covid19databank.payload.cov19cc.RegionData;
 import org.covid19databank.repository.CountryRepository;
@@ -46,6 +43,8 @@ public class DataLoaderService {
         this.reportedCaseRepository = reportedCaseRepository;
     }
 
+
+
     public void getCasesData() {
 
         JsonNode data = restTemplate.getForObject(Location.CASES_URL.get(), JsonNode.class);
@@ -69,7 +68,7 @@ public class DataLoaderService {
                     this.loadCasesData(reports);
                 }
             }catch (Exception e){
-                log.error("Failed: Region {} data could not be loaded", regionString);
+                log.error("Failed: Region {} data could not be loaded   ", regionString);
             }
 
         });
@@ -129,10 +128,7 @@ public class DataLoaderService {
         reportedCaseRepository.saveAll(reportedCases);
     }
 
+
+
 }
 
-
-/*
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
- */
