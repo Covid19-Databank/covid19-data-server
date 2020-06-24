@@ -3,7 +3,7 @@ package org.covid19databank.services;
 import org.covid19databank.datamodel.Literature;
 import org.covid19databank.datamodel.LiteratureType;
 import org.covid19databank.payload.europepmc.Entry;
-import org.covid19databank.payload.europepmc.Publication;
+import org.covid19databank.payload.europepmc.ResearchData;
 import org.covid19databank.repository.LiteratureRepository;
 import org.covid19databank.repository.LiteratureTypeRepository;
 import org.covid19databank.services.constant.LiteratureTypeEnum;
@@ -37,7 +37,7 @@ public class LiteratureLoaderService {
             String url = typeEnum.getUrl();
             String literatureTypeName = typeEnum.getType();
 
-            Publication data =  restTemplate.getForObject(url, Publication.class);
+            ResearchData data =  restTemplate.getForObject(url, ResearchData.class);
             List<Entry> entries = data.getEntries();
 
             loadLiteratureData(entries, literatureTypeName);
