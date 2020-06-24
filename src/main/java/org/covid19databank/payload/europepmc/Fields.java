@@ -18,7 +18,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "pagination",
         "pmcid",
         "ORCID",
-        "source"
+        "source",
+        "description",
+        "organism",
+        "curatedComplex"
 })
 public class Fields {
 
@@ -33,6 +36,9 @@ public class Fields {
     private List<String> pmcid;
     private List<String> oRCID;
     private List<String> source;
+    private List<String> description;
+    private List<String> organism;
+    private List<String> curatedComplex;
 
     @JsonProperty("name")
     public List<String> getName() {
@@ -128,7 +134,6 @@ public class Fields {
     public List<String> getORCID() {
         return oRCID;
     }
-
     @JsonProperty("ORCID")
     public void setORCID(List<String> oRCID) {
         this.oRCID = oRCID;
@@ -142,6 +147,36 @@ public class Fields {
     @JsonProperty("source")
     public void setSource(List<String> source) {
         this.source = source;
+    }
+
+    @JsonProperty("description")
+    public List<String> getDescription() {
+        return description;
+    }
+
+    @JsonProperty("description")
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    @JsonProperty("organism")
+    public List<String> getOrganism() {
+        return organism;
+    }
+
+    @JsonProperty("organism")
+    public void setOrganism(List<String> organism) {
+        this.organism = organism;
+    }
+
+    @JsonProperty("curated_complex")
+    public List<String> getCuratedComplex() {
+        return curatedComplex;
+    }
+
+    @JsonProperty("source")
+    public void setCuratedComplex(List<String> curatedComplex) {
+        this.curatedComplex = curatedComplex;
     }
 
 }
