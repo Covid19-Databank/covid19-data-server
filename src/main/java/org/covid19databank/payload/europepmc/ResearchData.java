@@ -2,7 +2,7 @@ package org.covid19databank.payload.europepmc;
 
 import java.util.List;
 
-public class Publication {
+public class ResearchData {
 
     private int hitCount;
     private List<Entry> entries;
