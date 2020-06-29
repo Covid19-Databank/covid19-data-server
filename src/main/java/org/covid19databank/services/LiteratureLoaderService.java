@@ -46,16 +46,15 @@ public class LiteratureLoaderService {
     }
 
 
+    public void loadLiteratureData(List<Entry> entries, String literatureTypeName) {
 
-    public void loadLiteratureData(List<Entry> entries, String name){
-
-        LiteratureType literatureType = literatureTypeRepository.findByName(name);
+        LiteratureType literatureType = literatureTypeRepository.findByName(literatureTypeName);
 
         for(Entry entry : entries) {
 
 
             String europePmcId = entry.getId();
-            String title = entry.getFields().getName().get(0);
+            String name = entry.getFields().getName().get(0);
             String author = join(entry.getFields().getAuthor());
             String displayAuthor = join(entry.getFields().getDisplayAuthor());
             String publication = entry.getFields().getPublicationDate().get(0);
@@ -66,8 +65,9 @@ public class LiteratureLoaderService {
             String pmcid = join(entry.getFields().getPmcid());
             String orcid = join(entry.getFields().getORCID());
             String source = join(entry.getFields().getSource());
+            log.info(name);
 
-            Literature literature = new Literature(europePmcId, title, author, displayAuthor, publication, journal, volume, issue, pagination, pmcid, orcid, source, literatureType);
+            Literature literature = new Literature(europePmcId, name, author, displayAuthor, publication, journal, volume, issue, pagination, pmcid, orcid, source, literatureType);
             literatureRepository.save(literature);
 
             log.info("Loaded Publication : {}", europePmcId);
