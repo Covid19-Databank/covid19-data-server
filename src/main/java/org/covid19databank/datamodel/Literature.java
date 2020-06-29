@@ -14,6 +14,7 @@ public class Literature {
 
     private String europePmcId;
 
+    @Column(columnDefinition = "Text")
     private String name;
 
     @Column(columnDefinition="Text")
@@ -29,6 +30,7 @@ public class Literature {
     private String issue;
     private String pagination;
 
+    @Column(columnDefinition = "Text")
     private String oRCID;
     private String source;
 
