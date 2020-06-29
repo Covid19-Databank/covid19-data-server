@@ -1,51 +1,55 @@
 package org.covid19databank.datamodel;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 public class Target {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String europePmcId;
-    private String name;
+    private Integer id;
+    private String targetId;
+
+    @Column(columnDefinition = "Text")
+    private String curatedComplex;
     private String organism;
+
+    @Column(columnDefinition = "Text")
     private String description;
 
     public Target() {
     }
 
-    public Target(String europePmcId, String name, String organism, String description) {
-        this.europePmcId = europePmcId;
-        this.name = name;
+    public Target(String targetId, String curatedComplex, String organism, String description) {
+        this.targetId = targetId;
+        this.curatedComplex = curatedComplex;
         this.organism = organism;
         this.description = description;
     }
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getEuropePmcId() {
-        return europePmcId;
+    public String getTargetId() {
+        return targetId;
     }
 
-    public void setEuropePmcId(String europePmcId) {
-        this.europePmcId = europePmcId;
+    public void setTargetId(String targetId) {
+        this.targetId = targetId;
     }
 
-    public String getName() {
-        return name;
+    public String getCuratedComplex() {
+        return curatedComplex;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCuratedComplex(String curatedComplex) {
+        this.curatedComplex = curatedComplex;
     }
 
     public String getOrganism() {
