@@ -169,12 +169,12 @@ public class Fields {
         this.organism = organism;
     }
 
-    @JsonProperty("curated_complex")
+    @JsonProperty("curated-complex")
     public List<String> getCuratedComplex() {
         return curatedComplex;
     }
 
-    @JsonProperty("source")
+    @JsonProperty("curated-complex")
     public void setCuratedComplex(List<String> curatedComplex) {
         this.curatedComplex = curatedComplex;
     }
