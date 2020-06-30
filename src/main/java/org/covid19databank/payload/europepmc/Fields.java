@@ -200,6 +200,7 @@ public class Fields {
         return taxonomy;
     }
 
+    @JsonProperty("TAXONOMY")
     public void setTaxonomy(List<String> taxonomy) {
         this.taxonomy = taxonomy;
     }
