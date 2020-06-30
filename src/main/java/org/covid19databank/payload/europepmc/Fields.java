@@ -21,7 +21,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "source",
         "description",
         "organism",
-        "curatedComplex"
+        "curated-complex",
+        "species",
+        "TAXONOMY"
+
 })
 public class Fields {
 
@@ -39,6 +42,8 @@ public class Fields {
     private List<String> description;
     private List<String> organism;
     private List<String> curatedComplex;
+    private List<String> specie;
+    private List<String> taxonomy;
 
     @JsonProperty("name")
     public List<String> getName() {
@@ -131,11 +136,12 @@ public class Fields {
     }
 
     @JsonProperty("ORCID")
-    public List<String> getORCID() {
+    public List<String> getoRCID() {
         return oRCID;
     }
+
     @JsonProperty("ORCID")
-    public void setORCID(List<String> oRCID) {
+    public void setoRCID(List<String> oRCID) {
         this.oRCID = oRCID;
     }
 
@@ -179,4 +185,22 @@ public class Fields {
         this.curatedComplex = curatedComplex;
     }
 
+    @JsonProperty("species")
+    public List<String> getSpecie() {
+        return specie;
+    }
+
+    @JsonProperty("species")
+    public void setSpecie(List<String> specie) {
+        this.specie = specie;
+    }
+
+    @JsonProperty("TAXONOMY")
+    public List<String> getTaxonomy() {
+        return taxonomy;
+    }
+
+    public void setTaxonomy(List<String> taxonomy) {
+        this.taxonomy = taxonomy;
+    }
 }
