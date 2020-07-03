@@ -20,8 +20,7 @@ public class Expression {
     public Expression() {
     }
 
-    public Expression(Integer id, String expressionId, String name, String taxonomy, String publicationDate, ExpressionType expressionType) {
-        this.id = id;
+    public Expression(String expressionId, String name, String taxonomy, String publicationDate, ExpressionType expressionType) {
         this.expressionId = expressionId;
         this.name = name;
         this.taxonomy = taxonomy;
