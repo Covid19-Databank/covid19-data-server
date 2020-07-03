@@ -63,7 +63,7 @@ public class LiteratureLoaderService {
             String issue = join(entry.getFields().getIssue());
             String pagination =  join(entry.getFields().getPagination());
             String pmcid = join(entry.getFields().getPmcid());
-            String orcid = join(entry.getFields().getORCID());
+            String orcid = join(entry.getFields().getoRCID());
             String source = join(entry.getFields().getSource());
             log.info(name);
 
