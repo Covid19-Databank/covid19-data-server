@@ -44,6 +44,12 @@ public class Fields {
     private List<String> curatedComplex;
     private List<String> specie;
     private List<String> taxonomy;
+    private List<String> collectionDate;
+    private List<String> country;
+    private List<String> host;
+    private List<String> strain;
+    private List<String> isolate;
+    private List<String> molecularType;
 
     @JsonProperty("name")
     public List<String> getName() {
@@ -203,5 +209,65 @@ public class Fields {
     @JsonProperty("TAXONOMY")
     public void setTaxonomy(List<String> taxonomy) {
         this.taxonomy = taxonomy;
+    }
+
+    @JsonProperty("collection_date")
+    public List<String> getCollectionDate() {
+        return collectionDate;
+    }
+
+    @JsonProperty("collection_date")
+    public void setCollectionDate(List<String> collectionDate) {
+        this.collectionDate = collectionDate;
+    }
+
+    @JsonProperty("country")
+    public List<String> getCountry() {
+        return country;
+    }
+
+    @JsonProperty("country")
+    public void setCountry(List<String> country) {
+        this.country = country;
+    }
+
+    @JsonProperty("host")
+    public List<String> getHost() {
+        return host;
+    }
+
+    @JsonProperty("host")
+    public void setHost(List<String> host) {
+        this.host = host;
+    }
+
+    @JsonProperty("strain")
+    public List<String> getStrain() {
+        return strain;
+    }
+
+    @JsonProperty("strain")
+    public void setStrain(List<String> strain) {
+        this.strain = strain;
+    }
+
+    @JsonProperty("isolate")
+    public List<String> getIsolate() {
+        return isolate;
+    }
+
+    @JsonProperty("isolate")
+    public void setIsolate(List<String> isolate) {
+        this.isolate = isolate;
+    }
+
+    @JsonProperty("molecular_type")
+    public List<String> getMolecularType() {
+        return molecularType;
+    }
+
+    @JsonProperty("molecular_type")
+    public void setMolecularType(List<String> molecularType) {
+        this.molecularType = molecularType;
     }
 }
