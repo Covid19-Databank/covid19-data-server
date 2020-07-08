@@ -1,15 +1,16 @@
 package org.covid19databank.datamodel;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class ExpressionType {
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "expressionType")
@@ -18,17 +19,15 @@ public class ExpressionType {
     public ExpressionType() {
     }
 
-    public ExpressionType(Integer id, String name, List<Expression> expressions) {
-        this.id = id;
+    public ExpressionType(String name) {
         this.name = name;
-        this.expressions = expressions;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -40,12 +39,6 @@ public class ExpressionType {
         this.name = name;
     }
 
-    public List<Expression> getExpressions() {
-        return expressions;
-    }
 
-    public void setExpressions(List<Expression> expressions) {
-        this.expressions = expressions;
-    }
 }
 
