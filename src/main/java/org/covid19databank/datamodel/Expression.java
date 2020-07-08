@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Expression {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String expressionId;
 
     @Column(columnDefinition = "Text")
@@ -13,6 +14,11 @@ public class Expression {
     private String taxonomy;
     private String publicationDate;
 
+    @Column(columnDefinition = "Text")
+    private String description;
+
+    @Column(columnDefinition = "Text")
+    private String specie;
     @ManyToOne
     @JoinColumn(name = "expression_type_id")
     private ExpressionType expressionType;
@@ -20,19 +26,22 @@ public class Expression {
     public Expression() {
     }
 
-    public Expression(String expressionId, String name, String taxonomy, String publicationDate, ExpressionType expressionType) {
+    public Expression(String expressionId, String name, String taxonomy, String publicationDate, String description, String specie, ExpressionType expressionType) {
         this.expressionId = expressionId;
         this.name = name;
         this.taxonomy = taxonomy;
         this.publicationDate = publicationDate;
         this.expressionType = expressionType;
+        this.description = description;
+        this.specie = specie;
+
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -66,6 +75,22 @@ public class Expression {
 
     public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSpecie() {
+        return specie;
+    }
+
+    public void setSpecie(String specie) {
+        this.specie = specie;
     }
 
     public ExpressionType getExpressionType() {
