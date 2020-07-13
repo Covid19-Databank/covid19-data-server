@@ -1,6 +1,4 @@
-package org.covid19databank.datamodel;
-
-import org.covid19databank.payload.europepmc.Fields;
+package org.covid19databank.datamodel.literatures;
 
 import javax.persistence.*;
 

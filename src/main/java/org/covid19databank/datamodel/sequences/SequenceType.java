@@ -1,7 +1,8 @@
-package org.covid19databank.datamodel;
+package org.covid19databank.datamodel.sequences;
+
+import org.covid19databank.datamodel.sequences.Sequence;
 
 import javax.persistence.*;
-import java.lang.reflect.Type;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,24 @@ public class SequenceType {
 
     @OneToMany(mappedBy = "SequenceType")
     private List<Sequence> sequences;
+
+    @OneToMany(mappedBy = "SequenceType")
+    private List<RawReads> rawReads;
+
+    @OneToMany(mappedBy = "SequenceType")
+    private List<SequencedSamples> sequencedSamples;
+
+    @OneToMany(mappedBy = "SequenceType")
+    private List<Studies> studies;
+
+    @OneToMany(mappedBy = "SequenceType")
+    private List<Genes> genes;
+
+    @OneToMany(mappedBy = "SequenceType")
+    private List<Browser> browsers;
+
+    @OneToMany(mappedBy = "SequenceType")
+    private List<Variant> variants;
 
     public SequenceType() {
     }

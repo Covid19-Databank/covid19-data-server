@@ -1,7 +1,7 @@
 package org.covid19databank.services;
 
-import org.covid19databank.datamodel.Expression;
-import org.covid19databank.datamodel.ExpressionType;
+import org.covid19databank.datamodel.expressions.Expression;
+import org.covid19databank.datamodel.expressions.ExpressionType;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
 import org.covid19databank.repository.ExpressionRepository;
@@ -74,7 +74,7 @@ public class ExpressionLoaderService {
 
             Optional<List<String>> species = Optional.ofNullable(entry.getFields().getSpecie());
 
-            String specie = join(descriptions.orElse(new ArrayList<>()));
+            String specie = join(species.orElse(new ArrayList<>()));
 
 
             log.info(name);

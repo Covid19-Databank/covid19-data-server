@@ -1,4 +1,6 @@
-package org.covid19databank.datamodel;
+package org.covid19databank.datamodel.literatures;
+
+import org.covid19databank.datamodel.literatures.Literature;
 
 import javax.persistence.*;
 import java.util.List;

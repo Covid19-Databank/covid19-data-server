@@ -11,7 +11,7 @@
     <groupId>org.covid19databank</groupId>
     <artifactId>covid19-data-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>covid19-data-server</name>
+    <curatedComplex>covid19-data-server</curatedComplex>
     <description>Backend Application for Covid19 Data Bank</description>
 
     <properties>

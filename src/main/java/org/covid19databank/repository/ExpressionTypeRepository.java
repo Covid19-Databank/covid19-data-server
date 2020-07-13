@@ -1,6 +1,6 @@
 package org.covid19databank.repository;
 
-import org.covid19databank.datamodel.ExpressionType;
+import org.covid19databank.datamodel.expressions.ExpressionType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

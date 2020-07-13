@@ -23,7 +23,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "organism",
         "curated-complex",
         "species",
-        "TAXONOMY"
+        "TAXONOMY",
+        "TAXON",
+        "molecule_type",
+        "location",
+        "collection_date",
+        "country",
+        "host",
+        "strain",
+        "isolate",
+        "insdc_center_name",
+        "long_description",
+        "scientific_name",
+        "assembly_name",
+        "assembly_accession"
+
 
 })
 public class Fields {
@@ -49,7 +63,15 @@ public class Fields {
     private List<String> host;
     private List<String> strain;
     private List<String> isolate;
-    private List<String> molecularType;
+    private List<String> moleculeType;
+    private List<String> location;
+    private List<String> taxon;
+    private List<String> centerName;
+    private List<String> longDescription;
+    private List<String> scientificName;
+    private List<String> assemblyName;
+    private List<String> assemblyAccession;
+
 
     @JsonProperty("name")
     public List<String> getName() {
@@ -261,13 +283,83 @@ public class Fields {
         this.isolate = isolate;
     }
 
-    @JsonProperty("molecular_type")
-    public List<String> getMolecularType() {
-        return molecularType;
+    @JsonProperty("location")
+    public List<String> getLocation() {
+        return location;
     }
 
-    @JsonProperty("molecular_type")
-    public void setMolecularType(List<String> molecularType) {
-        this.molecularType = molecularType;
+    @JsonProperty("location")
+    public void setLocation(List<String> location) {
+        this.location = location;
+    }
+
+    @JsonProperty("molecule_type")
+    public List<String> getMoleculeType() {
+        return moleculeType;
+    }
+
+    @JsonProperty("molecule_type")
+    public void setMoleculeType(List<String> moleculeType) {
+        this.moleculeType = moleculeType;
+    }
+
+    @JsonProperty("TAXON")
+    public List<String> getTaxon() {
+        return taxon;
+    }
+
+    @JsonProperty("TAXON")
+    public void setTaxon(List<String> taxon) {
+        this.taxon = taxon;
+    }
+
+    @JsonProperty("insdc_center_name")
+    public List<String> getCenterName() {
+        return centerName;
+    }
+
+    @JsonProperty("insdc_center_name")
+    public void setCenterName(List<String> centerName) {
+        this.centerName = centerName;
+    }
+
+    @JsonProperty("long_description")
+    public List<String> getLongDescription() {
+        return longDescription;
+    }
+
+    @JsonProperty("long_description")
+    public void setLongDescription(List<String> longDescription) {
+        this.longDescription = longDescription;
+    }
+
+    @JsonProperty("scientific_name")
+    public List<String> getScientificName() {
+        return scientificName;
+    }
+
+    @JsonProperty("scientific_name")
+    public void setScientificName(List<String> scientificName) {
+        this.scientificName = scientificName;
+    }
+
+    @JsonProperty("assembly_name")
+    public List<String> getAssemblyName() {
+        return assemblyName;
+    }
+
+    @JsonProperty("assembly_name")
+    public void setAssemblyName(List<String> assemblyName) {
+        this.assemblyName = assemblyName;
+    }
+
+    @JsonProperty("assembly_accession")
+    public List<String> getAssemblyAccession() {
+        return assemblyAccession;
+    }
+
+    @JsonProperty("assembly_accession")
+    public void setAssemblyAccession(List<String> assemblyAccession) {
+        this.assemblyAccession = assemblyAccession;
     }
 }

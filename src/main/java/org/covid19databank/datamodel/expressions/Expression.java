@@ -1,4 +1,4 @@
-package org.covid19databank.datamodel;
+package org.covid19databank.datamodel.expressions;
 
 import javax.persistence.*;
 
