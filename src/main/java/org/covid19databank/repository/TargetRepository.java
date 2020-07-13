@@ -1,6 +1,6 @@
 package org.covid19databank.repository;
 
-import org.covid19databank.datamodel.Target;
+import org.covid19databank.datamodel.targets.Target;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
