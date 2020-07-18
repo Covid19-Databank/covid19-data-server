@@ -23,12 +23,13 @@ public class Genes {
     public Genes() {
     }
 
-    public Genes(String sequenceId, String name, String description, String species, String location) {
+    public Genes(String sequenceId, String name, String description, String species, String location, SequenceType sequenceType) {
         this.sequenceId = sequenceId;
         this.name = name;
         this.description = description;
         this.species = species;
         this.location = location;
+        this.sequenceType = sequenceType;
     }
 
     public int getId() {
