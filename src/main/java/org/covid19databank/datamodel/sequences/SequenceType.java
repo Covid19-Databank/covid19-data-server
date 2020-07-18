@@ -36,6 +36,9 @@ public class SequenceType {
     @OneToMany(mappedBy = "SequenceType")
     private List<Variant> variants;
 
+    @OneToMany(mappedBy = "SequenceType")
+    private List<HostData> hostData;
+
     public SequenceType() {
     }
 

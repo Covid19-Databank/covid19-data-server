@@ -18,7 +18,9 @@ public enum SequenceTypeEnum {
 
     BROWSER("Browser", "https://www.ebi.ac.uk/ebisearch/ws/rest/ensemblGenomes-cv19_genome/?query=id:[* TO *]&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=scientific_name,assembly_name,assembly_accession&entryattrs=score"),
 
-    VARIANTS("Variants", "https%3A%2F%2Fwww.ebi.ac.uk%2Febisearch%2Fws%2Frest%2FensemblGenomes-cv19_variant%2F%3Fquery%3Did%253A%255B%2A%2520TO%2520%2A%255D%26size%3D15%26format%3DJSON%26facetcount%3D10%26fieldurl%3Dtrue%26viewurl%3Dtrue%26fields%3Dname%252Cdescription%252Cspecies%252Clocation%26entryattrs%3Dscore");
+    VARIANTS("Variants", "https%3A%2F%2Fwww.ebi.ac.uk%2Febisearch%2Fws%2Frest%2FensemblGenomes-cv19_variant%2F%3Fquery%3Did%253A%255B%2A%2520TO%2520%2A%255D%26size%3D15%26format%3DJSON%26facetcount%3D10%26fieldurl%3Dtrue%26viewurl%3Dtrue%26fields%3Dname%252Cdescription%252Cspecies%252Clocation%26entryattrs%3Dscore"),
+
+    HOST_DATA("Host data", "https://www.ebi.ac.uk/ebisearch/ws/rest/ega/?query=OLS:\"MONDO:0100096\"&size=15&format=JSON&facetcount=11&fieldurl=true&viewurl=true&fields=name,description&entryattrs=score&facetfields=TAXONOMY");
 
 
     private final String type;
