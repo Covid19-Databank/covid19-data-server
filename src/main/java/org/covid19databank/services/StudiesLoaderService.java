@@ -1,11 +1,9 @@
 package org.covid19databank.services;
 
-import org.covid19databank.datamodel.sequences.RawReads;
 import org.covid19databank.datamodel.sequences.SequenceType;
 import org.covid19databank.datamodel.sequences.Studies;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
-import org.covid19databank.repository.RawReadsRepository;
 import org.covid19databank.repository.SequenceTypeRepository;
 import org.covid19databank.repository.StudiesRepository;
 import org.covid19databank.services.constant.SequenceTypeEnum;

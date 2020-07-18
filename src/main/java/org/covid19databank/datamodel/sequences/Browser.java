@@ -19,10 +19,11 @@ public class Browser {
     public Browser() {
     }
 
-    public Browser(String sequenceId, String scientificName, String assemblyName) {
+    public Browser(String sequenceId, String scientificName, String assemblyName, SequenceType sequenceType) {
         this.sequenceId = sequenceId;
         this.scientificName = scientificName;
         this.assemblyName = assemblyName;
+        this.sequenceType = sequenceType;
     }
 
     public int getId() {

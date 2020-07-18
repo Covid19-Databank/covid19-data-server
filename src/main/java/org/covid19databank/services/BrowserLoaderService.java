@@ -1,16 +1,14 @@
 package org.covid19databank.services;
 
-
-import org.covid19databank.datamodel.sequences.Genes;
+import org.covid19databank.datamodel.sequences.Browser;
 import org.covid19databank.datamodel.sequences.SequenceType;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
-import org.covid19databank.repository.GenesRepository;
+import org.covid19databank.repository.BrowserRepository;
 import org.covid19databank.repository.SequenceTypeRepository;
 import org.covid19databank.services.constant.SequenceTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -18,22 +16,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class GeneLoaderService {
+public class BrowserLoaderService {
 
-
-    private Logger log = LoggerFactory.getLogger(GeneLoaderService.class);
+    private Logger log = LoggerFactory.getLogger(BrowserLoaderService.class);
     private RestTemplate restTemplate;
-    private GenesRepository genesRepository;
+    private BrowserRepository browserRepository;
     private SequenceTypeRepository sequenceTypeRepository;
 
-    public GeneLoaderService(RestTemplate restTemplate, GenesRepository genesRepository, SequenceTypeRepository sequenceTypeRepository) {
+    public BrowserLoaderService(RestTemplate restTemplate, BrowserRepository browserRepository, SequenceTypeRepository sequenceTypeRepository) {
         this.restTemplate = restTemplate;
-        this.genesRepository = genesRepository;
+        this.browserRepository = browserRepository;
         this.sequenceTypeRepository = sequenceTypeRepository;
     }
 
-    public void getGenes() {
+    public void getBrowserData() {
 
         List<SequenceTypeEnum> typeEnums = Arrays.asList(SequenceTypeEnum.values());
         typeEnums.forEach(typeEnum -> {
@@ -45,12 +41,13 @@ public class GeneLoaderService {
             ResearchData data = restTemplate.getForObject(url, ResearchData.class);
             List<Entry> entries = data.getEntries();
 
-            loadGenes(entries, sequenceTypeName);
+            loadBrowserData(entries, sequenceTypeName);
 
         });
     }
 
-    public void loadGenes(List<Entry> entries, String sequenceTypeName) {
+    public void loadBrowserData(List<Entry> entries, String sequenceTypeName) {
+
         SequenceType sequenceType = sequenceTypeRepository.findByName(sequenceTypeName);
 
         for (Entry entry : entries) {
@@ -60,17 +57,13 @@ public class GeneLoaderService {
             Optional<List<String>> names = Optional.ofNullable(entry.getFields().getName());
             String name = join(names.orElse(new ArrayList<>()));
 
-            Optional<List<String>> descriptions = Optional.ofNullable(entry.getFields().getDescription());
-            String description = join(descriptions.orElse(new ArrayList<>()));
+            Optional<List<String>> assemblies = Optional.ofNullable(entry.getFields().getAssemblyName());
+            String assembly = join(assemblies.orElse(new ArrayList<>()));
 
-            Optional<List<String>> species = Optional.ofNullable(entry.getFields().getSpecie());
-            String specie = join(species.orElse(new ArrayList<>()));
+            Browser browser = new Browser(sequenceId, name, assembly, sequenceType);
+            browserRepository.save(browser);
 
-            Optional<List<String>> locations = Optional.ofNullable(entry.getFields().getLocation());
-            String location = join(locations.orElse(new ArrayList<>()));
-
-            Genes genes = new Genes(sequenceId, name, description, specie, location, sequenceType);
-            genesRepository.save(genes);
+            log.info("Loaded Publication : {}", sequenceId);
 
 
         }
