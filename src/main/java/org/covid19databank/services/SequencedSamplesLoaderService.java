@@ -45,7 +45,7 @@ public class SequencedSamplesLoaderService {
             ResearchData data = restTemplate.getForObject(url, ResearchData.class);
             List<Entry> entries = data.getEntries();
 
-            //loadSequenceData(entries, sequenceTypeName);
+            loadSequencedSampleData(entries, sequenceTypeName);
 
         });
     }

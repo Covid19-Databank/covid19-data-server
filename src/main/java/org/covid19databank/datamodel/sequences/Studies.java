@@ -22,11 +22,12 @@ public class Studies {
     public Studies() {
     }
 
-    public Studies(String sequenceId, String longDescription, String scientificName, String taxonomy) {
+    public Studies(String sequenceId, String longDescription, String scientificName, String taxonomy, SequenceType sequenceType) {
         this.sequenceId = sequenceId;
         this.longDescription = longDescription;
         this.scientificName = scientificName;
         this.taxonomy = taxonomy;
+        this.sequenceType = sequenceType;
     }
 
     public int getId() {
