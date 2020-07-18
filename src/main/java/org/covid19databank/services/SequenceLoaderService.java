@@ -76,7 +76,9 @@ public class SequenceLoaderService {
             Optional<List<String>> locations = Optional.ofNullable(entry.getFields().getLocation());
             String location = join(locations.orElse(new ArrayList<>()));
 
+
             log.info(location);
+
 
             Sequence sequence = new Sequence(sequenceId, collectionDate, country, host, strain, isolate, location, sequenceType);
             sequenceRepository.save(sequence);

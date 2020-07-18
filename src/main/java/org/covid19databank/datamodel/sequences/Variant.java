@@ -21,10 +21,11 @@ public class Variant {
     public Variant() {
     }
 
-    public Variant(String sequenceId, String description, String species) {
+    public Variant(String sequenceId, String description, String species, SequenceType sequenceType) {
         this.sequenceId = sequenceId;
         this.description = description;
         this.species = species;
+        this.sequenceType = sequenceType;
     }
 
     public int getId() {

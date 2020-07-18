@@ -2,12 +2,11 @@ package org.covid19databank.services;
 
 import org.covid19databank.datamodel.sequences.Sequence;
 import org.covid19databank.datamodel.sequences.SequenceType;
-import org.covid19databank.datamodel.sequences.SequencedSamples;
+import org.covid19databank.datamodel.sequences.Variant;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
-import org.covid19databank.repository.SequenceRepository;
 import org.covid19databank.repository.SequenceTypeRepository;
-import org.covid19databank.repository.SequencedSamplesRepository;
+import org.covid19databank.repository.VariantRepository;
 import org.covid19databank.services.constant.SequenceTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,20 +19,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SequencedSamplesLoaderService {
-
-    private Logger log = LoggerFactory.getLogger(SequencedSamplesLoaderService.class);
+public class VariantLoaderService {
+    private Logger log = LoggerFactory.getLogger(VariantLoaderService.class);
     private RestTemplate restTemplate;
-    private SequencedSamplesRepository sequencedSamplesRepository;
+    private VariantRepository variantRepository;
     private SequenceTypeRepository sequenceTypeRepository;
 
-    public SequencedSamplesLoaderService(RestTemplate restTemplate, SequencedSamplesRepository sequencedSamplesRepository, SequenceTypeRepository sequenceTypeRepository) {
+    public VariantLoaderService(RestTemplate restTemplate, VariantRepository variantRepository, SequenceTypeRepository sequenceTypeRepository) {
         this.restTemplate = restTemplate;
-        this.sequencedSamplesRepository = sequencedSamplesRepository;
+        this.variantRepository = variantRepository;
         this.sequenceTypeRepository = sequenceTypeRepository;
     }
 
-    public void getSequencedSampleData() {
+    public void getVariantData() {
 
         List<SequenceTypeEnum> typeEnums = Arrays.asList(SequenceTypeEnum.values());
         typeEnums.forEach(typeEnum -> {
@@ -45,29 +43,30 @@ public class SequencedSamplesLoaderService {
             ResearchData data = restTemplate.getForObject(url, ResearchData.class);
             List<Entry> entries = data.getEntries();
 
-            loadSequencedSampleData(entries, sequenceTypeName);
+            loadVariantData(entries, sequenceTypeName);
 
         });
     }
 
-    public void loadSequencedSampleData(List<Entry> entries, String sequenceTypeName) {
+    public void loadVariantData(List<Entry> entries, String sequenceTypeName) {
+
         SequenceType sequenceType = sequenceTypeRepository.findByName(sequenceTypeName);
 
         for (Entry entry : entries) {
 
+
             String sequenceId = entry.getId();
-
-            Optional<List<String>> names = Optional.ofNullable(entry.getFields().getName());
-            String name = join(names.orElse(new ArrayList<>()));
-
-            Optional<List<String>> centerNames = Optional.ofNullable(entry.getFields().getCenterName());
-            String centerName = join(centerNames.orElse(new ArrayList<>()));
 
             Optional<List<String>> descriptions = Optional.ofNullable(entry.getFields().getDescription());
             String description = join(descriptions.orElse(new ArrayList<>()));
 
-            SequencedSamples sequencedSamples = new SequencedSamples(sequenceId, name, centerName, description, sequenceType);
-            sequencedSamplesRepository.save(sequencedSamples);
+            Optional<List<String>> species = Optional.ofNullable(entry.getFields().getSpecie());
+            String specie = join(species.orElse(new ArrayList<>()));
+
+
+            Variant variant = new Variant(sequenceId, description, specie, sequenceType);
+            variantRepository.save(variant);
+
 
         }
 
