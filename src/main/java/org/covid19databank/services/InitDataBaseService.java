@@ -7,11 +7,10 @@ import org.covid19databank.datamodel.Country;
 import org.covid19databank.datamodel.expressions.ExpressionType;
 import org.covid19databank.datamodel.literatures.LiteratureType;
 import org.covid19databank.datamodel.Region;
+import org.covid19databank.datamodel.sequences.Sequence;
+import org.covid19databank.datamodel.sequences.SequenceType;
 import org.covid19databank.repository.*;
-import org.covid19databank.services.constant.ExpressionTypeEnum;
-import org.covid19databank.services.constant.LiteratureTypeEnum;
-import org.covid19databank.services.constant.Location;
-import org.covid19databank.services.constant.Regions;
+import org.covid19databank.services.constant.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -32,12 +31,14 @@ public class InitDataBaseService {
     private CountryRepository countryRepository;
     private LiteratureTypeRepository literatureTypeRepository;
     private ExpressionTypeRepository expressionTypeRepository;
+    private SequenceTypeRepository sequenceTypeRepository;
 
-    public InitDataBaseService(RegionRepository regionRepository, CountryRepository countryRepository, LiteratureTypeRepository literatureTypeRepository, ExpressionTypeRepository expressionTypeRepository) {
+    public InitDataBaseService(RegionRepository regionRepository, CountryRepository countryRepository, LiteratureTypeRepository literatureTypeRepository, ExpressionTypeRepository expressionTypeRepository, SequenceTypeRepository sequenceTypeRepository) {
         this.regionRepository = regionRepository;
         this.countryRepository = countryRepository;
         this.literatureTypeRepository = literatureTypeRepository;
         this.expressionTypeRepository = expressionTypeRepository;
+        this.sequenceTypeRepository = sequenceTypeRepository;
 
     }
 
@@ -101,6 +102,27 @@ public class InitDataBaseService {
 
         try {
             expressionTypeRepository.saveAll(expressionTypes);
+        } catch (Exception e) {
+            log.info("Duplicate Not Allowed");
+
+
+        }
+
+    }
+
+    public void loadSequenceTypes() {
+
+        List<SequenceType> sequenceTypes = new ArrayList<>();
+
+        List<SequenceTypeEnum> sequenceTypeEnums = Arrays.asList(SequenceTypeEnum.values());
+
+        for (SequenceTypeEnum sequenceTypeEnum : sequenceTypeEnums) {
+            SequenceType sequenceType = new SequenceType(sequenceTypeEnum.getType());
+            sequenceTypes.add(sequenceType);
+        }
+
+        try {
+            sequenceTypeRepository.saveAll(sequenceTypes);
         } catch (Exception e) {
             log.info("Duplicate Not Allowed");
 

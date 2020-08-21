@@ -15,28 +15,28 @@ public class SequenceType {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<Sequence> sequences;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<RawReads> rawReads;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<SequencedSamples> sequencedSamples;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<Studies> studies;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<Genes> genes;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<Browser> browsers;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType")
     private List<Variant> variants;
 
-    @OneToMany(mappedBy = "SequenceType")
+    @OneToMany(mappedBy = "sequenceType" + "")
     private List<HostData> hostData;
 
     public SequenceType() {

@@ -35,19 +35,15 @@ public class SequencedSamplesLoaderService {
 
     public void getSequencedSampleData() {
 
-        List<SequenceTypeEnum> typeEnums = Arrays.asList(SequenceTypeEnum.values());
-        typeEnums.forEach(typeEnum -> {
 
-            String url = typeEnum.getUrl();
-            String sequenceTypeName = typeEnum.getType();
+        String url = SequenceTypeEnum.BROWSER.getUrl();
+        String sequenceTypeName = SequenceTypeEnum.BROWSER.getType();
 
             log.info(url);
             ResearchData data = restTemplate.getForObject(url, ResearchData.class);
             List<Entry> entries = data.getEntries();
 
             loadSequencedSampleData(entries, sequenceTypeName);
-
-        });
     }
 
     public void loadSequencedSampleData(List<Entry> entries, String sequenceTypeName) {

@@ -9,6 +9,7 @@ import org.covid19databank.repository.SequenceTypeRepository;
 import org.covid19databank.services.constant.SequenceTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BrowserLoaderService {
 
     private Logger log = LoggerFactory.getLogger(BrowserLoaderService.class);
@@ -31,19 +33,12 @@ public class BrowserLoaderService {
 
     public void getBrowserData() {
 
-        List<SequenceTypeEnum> typeEnums = Arrays.asList(SequenceTypeEnum.values());
-        typeEnums.forEach(typeEnum -> {
 
-            String url = typeEnum.getUrl();
-            String sequenceTypeName = typeEnum.getType();
+        ResearchData data = restTemplate.getForObject(SequenceTypeEnum.BROWSER.getUrl(), ResearchData.class);
+        List<Entry> entries = data.getEntries();
 
-            log.info(url);
-            ResearchData data = restTemplate.getForObject(url, ResearchData.class);
-            List<Entry> entries = data.getEntries();
+        loadBrowserData(entries, SequenceTypeEnum.BROWSER.getType());
 
-            loadBrowserData(entries, sequenceTypeName);
-
-        });
     }
 
     public void loadBrowserData(List<Entry> entries, String sequenceTypeName) {
@@ -54,7 +49,7 @@ public class BrowserLoaderService {
 
             String sequenceId = entry.getId();
 
-            Optional<List<String>> names = Optional.ofNullable(entry.getFields().getName());
+            Optional<List<String>> names = Optional.ofNullable(entry.getFields().getScientificName());
             String name = join(names.orElse(new ArrayList<>()));
 
             Optional<List<String>> assemblies = Optional.ofNullable(entry.getFields().getAssemblyName());

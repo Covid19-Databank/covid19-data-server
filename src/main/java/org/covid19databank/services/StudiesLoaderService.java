@@ -33,11 +33,9 @@ public class StudiesLoaderService {
 
     public void getStudies() {
 
-        List<SequenceTypeEnum> typeEnums = Arrays.asList(SequenceTypeEnum.values());
-        typeEnums.forEach(typeEnum -> {
 
-            String url = typeEnum.getUrl();
-            String sequenceTypeName = typeEnum.getType();
+        String url = SequenceTypeEnum.BROWSER.getUrl();
+        String sequenceTypeName = SequenceTypeEnum.BROWSER.getType();
 
             log.info(url);
             ResearchData data = restTemplate.getForObject(url, ResearchData.class);
@@ -45,7 +43,6 @@ public class StudiesLoaderService {
 
             loadStudies(entries, sequenceTypeName);
 
-        });
     }
 
     public void loadStudies(List<Entry> entries, String sequenceTypeName) {

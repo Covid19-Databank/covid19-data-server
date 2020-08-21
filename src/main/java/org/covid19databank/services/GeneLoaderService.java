@@ -35,11 +35,9 @@ public class GeneLoaderService {
 
     public void getGenes() {
 
-        List<SequenceTypeEnum> typeEnums = Arrays.asList(SequenceTypeEnum.values());
-        typeEnums.forEach(typeEnum -> {
 
-            String url = typeEnum.getUrl();
-            String sequenceTypeName = typeEnum.getType();
+        String url = SequenceTypeEnum.BROWSER.getUrl();
+        String sequenceTypeName = SequenceTypeEnum.BROWSER.getType();
 
             log.info(url);
             ResearchData data = restTemplate.getForObject(url, ResearchData.class);
@@ -47,7 +45,6 @@ public class GeneLoaderService {
 
             loadGenes(entries, sequenceTypeName);
 
-        });
     }
 
     public void loadGenes(List<Entry> entries, String sequenceTypeName) {
