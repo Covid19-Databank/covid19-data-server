@@ -1,6 +1,8 @@
 package org.covid19databank.loader;
 
 import org.covid19databank.services.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class InitDB implements CommandLineRunner {
+
+    private Logger log = LoggerFactory.getLogger(InitDB.class);
 
     private DataLoaderService dataLoaderService;
     private InitDataBaseService initDataBaseService;
@@ -25,6 +29,10 @@ public class InitDB implements CommandLineRunner {
 
     @Value("${init.database}")
     private boolean iniitializeDatabase;
+
+    @Value("${load.data}")
+    private boolean loadData;
+
 
     public InitDB(DataLoaderService dataLoaderService,
                   InitDataBaseService initDataBaseService,
@@ -56,26 +64,38 @@ public class InitDB implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        log.info("System successfuly initialized, Is Database initializing ? User set it as: " + iniitializeDatabase);
+
         if (iniitializeDatabase) {
+            log.info("Database intitialization commenced");
             initDataBaseService.loadRegions();
             initDataBaseService.loadLiteratureTypes();
             initDataBaseService.loadExpressionTypes();
-           // initDataBaseService.loadCountries();
+            // initDataBaseService.loadCountries();
             initDataBaseService.loadSequenceTypes();
+
+            log.info("Database intialization success");
         }
 
-        //dataLoaderService.getCasesData();
-        literatureLoaderService.getLiteratureData();
-        targetLoaderService.getTargetData();
-        expressionLoaderService.getExpressionData();
-        browserLoaderService.getBrowserData();
-        geneLoaderService.getGenes();
-        hostDataLoaderService.getHostData();
-        rawReadsLoaderService.getRawReadsData();
-        sequencedSamplesLoaderService.getSequencedSampleData();
-        sequenceLoaderService.getSequenceData();
-        studiesLoaderService.getStudies();
-        variantLoaderService.getVariantData();
+
+        if (loadData) {
+            log.info("Data Loading starting now");
+            //dataLoaderService.getCasesData();
+            literatureLoaderService.getLiteratureData();
+            targetLoaderService.getTargetData();
+            expressionLoaderService.getExpressionData();
+            browserLoaderService.getBrowserData();
+            geneLoaderService.getGenes();
+            hostDataLoaderService.getHostData();
+            rawReadsLoaderService.getRawReadsData();
+            sequencedSamplesLoaderService.getSequencedSampleData();
+            sequenceLoaderService.getSequenceData();
+            studiesLoaderService.getStudies();
+            variantLoaderService.getVariantData();
+
+            log.info("Data Loading successfuly done");
+        }
 
 
     }

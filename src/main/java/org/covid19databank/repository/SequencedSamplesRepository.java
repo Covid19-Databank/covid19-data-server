@@ -1,9 +1,11 @@
 package org.covid19databank.repository;
 
-import org.covid19databank.datamodel.sequences.SequencedSamples;
+import org.covid19databank.datamodel.sequences.SequencedSample;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SequencedSamplesRepository extends JpaRepository<SequencedSamples, Integer> {
+@RepositoryRestResource(path = "sequenced-samples")
+public interface SequencedSamplesRepository extends JpaRepository<SequencedSample, Integer> {
 }

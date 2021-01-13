@@ -3,36 +3,34 @@ package org.covid19databank.datamodel.sequences;
 import javax.persistence.*;
 
 @Entity
-public class Genes {
+public class SequencedSample {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String sequenceId;
     private String name;
 
     @Column(columnDefinition = "Text")
     private String description;
-    private String species;
-    private String location;
+    private String centerName;
 
     @ManyToOne
     @JoinColumn(name = "sequence_type_id")
     private SequenceType sequenceType;
 
-    public Genes() {
+    public SequencedSample() {
     }
 
-    public Genes(String sequenceId, String name, String description, String species, String location, SequenceType sequenceType) {
+    public SequencedSample(String sequenceId, String name, String description, String centerName, SequenceType sequenceType) {
         this.sequenceId = sequenceId;
         this.name = name;
         this.description = description;
-        this.species = species;
-        this.location = location;
+        this.centerName = centerName;
         this.sequenceType = sequenceType;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -64,19 +62,12 @@ public class Genes {
         this.description = description;
     }
 
-    public String getSpecies() {
-        return species;
+    public String getCenterName() {
+        return centerName;
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCenterName(String centerName) {
+        this.centerName = centerName;
     }
 }
+

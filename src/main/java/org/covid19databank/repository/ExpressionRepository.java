@@ -2,8 +2,11 @@ package org.covid19databank.repository;
 
 import org.covid19databank.datamodel.expressions.Expression;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-@Repository
+@CrossOrigin
+@RepositoryRestController
 public interface ExpressionRepository extends JpaRepository<Expression, Integer> {
 }

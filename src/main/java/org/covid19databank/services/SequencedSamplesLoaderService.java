@@ -1,11 +1,9 @@
 package org.covid19databank.services;
 
-import org.covid19databank.datamodel.sequences.Sequence;
 import org.covid19databank.datamodel.sequences.SequenceType;
-import org.covid19databank.datamodel.sequences.SequencedSamples;
+import org.covid19databank.datamodel.sequences.SequencedSample;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
-import org.covid19databank.repository.SequenceRepository;
 import org.covid19databank.repository.SequenceTypeRepository;
 import org.covid19databank.repository.SequencedSamplesRepository;
 import org.covid19databank.services.constant.SequenceTypeEnum;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,8 +59,8 @@ public class SequencedSamplesLoaderService {
             Optional<List<String>> descriptions = Optional.ofNullable(entry.getFields().getDescription());
             String description = join(descriptions.orElse(new ArrayList<>()));
 
-            SequencedSamples sequencedSamples = new SequencedSamples(sequenceId, name, description, centerName, sequenceType);
-            sequencedSamplesRepository.save(sequencedSamples);
+            SequencedSample sequencedSample = new SequencedSample(sequenceId, name, description, centerName, sequenceType);
+            sequencedSamplesRepository.save(sequencedSample);
 
         }
 

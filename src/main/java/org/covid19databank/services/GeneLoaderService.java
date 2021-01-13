@@ -1,7 +1,7 @@
 package org.covid19databank.services;
 
 
-import org.covid19databank.datamodel.sequences.Genes;
+import org.covid19databank.datamodel.sequences.Gene;
 import org.covid19databank.datamodel.sequences.SequenceType;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,8 +65,8 @@ public class GeneLoaderService {
             Optional<List<String>> locations = Optional.ofNullable(entry.getFields().getLocation());
             String location = join(locations.orElse(new ArrayList<>()));
 
-            Genes genes = new Genes(sequenceId, name, description, specie, location, sequenceType);
-            genesRepository.save(genes);
+            Gene gene = new Gene(sequenceId, name, description, specie, location, sequenceType);
+            genesRepository.save(gene);
 
 
         }

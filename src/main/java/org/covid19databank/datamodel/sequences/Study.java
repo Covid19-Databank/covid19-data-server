@@ -3,7 +3,7 @@ package org.covid19databank.datamodel.sequences;
 import javax.persistence.*;
 
 @Entity
-public class Studies {
+public class Study {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class Studies {
     @JoinColumn(name = "sequence_type_id")
     private SequenceType sequenceType;
 
-    public Studies() {
+    public Study() {
     }
 
-    public Studies(String sequenceId, String longDescription, String scientificName, String taxonomy, SequenceType sequenceType) {
+    public Study(String sequenceId, String longDescription, String scientificName, String taxonomy, SequenceType sequenceType) {
         this.sequenceId = sequenceId;
         this.longDescription = longDescription;
         this.scientificName = scientificName;

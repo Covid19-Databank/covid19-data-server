@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum ExpressionTypeEnum {
 
-    GENES_EXPRESSION_EXPERIMENT("Genes Expression Experiment", "https://www.ebi.ac.uk/ebisearch/ws/rest/atlas-experiments/?query=coronavirus OR SARS OR coronaviruses OR icSARS OR id:(E-GEOD-27973 OR E-GEOD-34205 OR E-GEOD-36287 OR E-GEOD-52405)&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=name,description,publication_date,TAXONOMY&entryattrs=score&facetfields=publication_date,TAXONOMY"),
+    GENES_EXPRESSION_EXPERIMENT("Gene Expression Experiment", "https://www.ebi.ac.uk/ebisearch/ws/rest/atlas-experiments/?query=coronavirus OR SARS OR coronaviruses OR icSARS OR id:(E-GEOD-27973 OR E-GEOD-34205 OR E-GEOD-36287 OR E-GEOD-52405)&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=name,description,publication_date,TAXONOMY&entryattrs=score&facetfields=publication_date,TAXONOMY"),
 
     GENE_EXPRESSION("Gene Expression", "https://www.ebi.ac.uk/ebisearch/ws/rest/atlas-genes/?query=name:(ACE2^1.1 OR TMPRSS2^1.1 OR CTSB OR CTSL) TAXONOMY:9606&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=name,description,TAXONOMY&entryattrs=score"),
 

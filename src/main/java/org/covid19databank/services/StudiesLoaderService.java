@@ -1,7 +1,7 @@
 package org.covid19databank.services;
 
 import org.covid19databank.datamodel.sequences.SequenceType;
-import org.covid19databank.datamodel.sequences.Studies;
+import org.covid19databank.datamodel.sequences.Study;
 import org.covid19databank.payload.europepmc.Entry;
 import org.covid19databank.payload.europepmc.ResearchData;
 import org.covid19databank.repository.SequenceTypeRepository;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,8 +62,8 @@ public class StudiesLoaderService {
             String taxonomy = join(taxonomies.orElse(new ArrayList<>()));
 
 
-            Studies studies = new Studies(sequenceId, longDescription, scientificName, taxonomy, sequenceType);
-            studiesRepository.save(studies);
+            Study study = new Study(sequenceId, longDescription, scientificName, taxonomy, sequenceType);
+            studiesRepository.save(study);
 
 
         }

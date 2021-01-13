@@ -12,9 +12,9 @@ public enum SequenceTypeEnum {
 
     SEQUENCED_SAMPLES("Sequenced Samples", "https://www.ebi.ac.uk/ebisearch/ws/rest/biosamples-covid19/?query=id:[* TO *]&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=name,description,insdc_center_name,collection_date,geographic_location_country_andor_sea,host,isolate,strain,TAXONOMY&entryattrs=score"),
 
-    STUDIES("Studies", "https://www.ebi.ac.uk/ebisearch/ws/rest/project/?query=TAXONOMY:(2697049) OR id:(PRJEB36487 OR PRJNA605247 OR PRJNA605927 OR PRJNA606159 OR PRJNA607948 OR PRJNA60615 OR PRJEB37039 OR PRJNA606165 OR PRJEB37886 OR PRJEB37966 OR PRJEB37513 OR PRJEB38351 OR PRJEB38388)&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=description,long_description,name,scientific_name,TAXON&entryattrs=score"),
+    STUDIES("Study", "https://www.ebi.ac.uk/ebisearch/ws/rest/project/?query=TAXONOMY:(2697049) OR id:(PRJEB36487 OR PRJNA605247 OR PRJNA605927 OR PRJNA606159 OR PRJNA607948 OR PRJNA60615 OR PRJEB37039 OR PRJNA606165 OR PRJEB37886 OR PRJEB37966 OR PRJEB37513 OR PRJEB38351 OR PRJEB38388)&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=description,long_description,name,scientific_name,TAXON&entryattrs=score"),
 
-    GENES("Genes", "https://www.ebi.ac.uk/ebisearch/ws/rest/ensemblGenomes-cv19_gene/?query=id:[* TO *]&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=name,description,species,location&entryattrs=score"),
+    GENES("Gene", "https://www.ebi.ac.uk/ebisearch/ws/rest/ensemblGenomes-cv19_gene/?query=id:[* TO *]&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=name,description,species,location&entryattrs=score"),
 
     BROWSER("Browser", "https://www.ebi.ac.uk/ebisearch/ws/rest/ensemblGenomes-cv19_genome/?query=id:[* TO *]&size=15&format=JSON&facetcount=10&fieldurl=true&viewurl=true&fields=scientific_name,assembly_name,assembly_accession&entryattrs=score"),
 
